@@ -7,7 +7,7 @@ from email.utils import formatdate
 my_username = 'sender@email.com'
 my_password = 'sender_password'
 send_from = 'sender@email.com'
-sender_name = 'Peter Parkingspace'
+sender_name = 'Sender Name'
 email_subject = 'Happy New Year!'
     
 def send_email(send_from, sender_name, subject, body, recipients, username, password):
@@ -33,13 +33,13 @@ def send_email(send_from, sender_name, subject, body, recipients, username, pass
         smtp.quit()
 
 def run():
-    df = pd.read_excel('./sorkorsor/recipients.xlsx')
+    df = pd.read_csv('./sorkorsor/recipients.csv')
     body = open('./sorkorsor/html/card.html', 'r', encoding='utf8').read()
     send_email(send_from, sender_name, email_subject, body, df, username=my_username,
                password=my_password)
     
 if __name__ == '__main__':
-    df = pd.read_excel('./recipients.xlsx')
+    df = pd.read_csv('./recipients.csv')
     body = open('./html/card.html', 'r', encoding='utf8').read()
     send_email(send_from, sender_name, email_subject, body, df, username=my_username,
                password=my_password)
